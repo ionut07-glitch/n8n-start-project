@@ -117,6 +117,9 @@ Un cop arrencat, accedeix a [http://localhost:5678](http://localhost:5678) i cre
    - **Name:** `Authorization`
    - **Value:** `Bearer <la-teva-api-key>`
 
+> 💡 Model recomanat: `meta-llama/llama-4-scout` (o el que tingueu configurat).
+> Alguns models gratuïts no retornen JSON vàlid i faran petar el node de parsejat.
+
 <img width="1862" height="169" alt="image" src="https://github.com/user-attachments/assets/4dff6f47-a180-47b8-807d-9ecee1ea3f3d" /> 
 
 ---
