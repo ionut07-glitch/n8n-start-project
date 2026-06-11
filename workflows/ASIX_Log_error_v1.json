@@ -1,0 +1,111 @@
+{
+  "name": "ASIX Log error v1",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        32
+      ],
+      "id": "7f0ac5b3-2c9d-4e05-8819-5bc7a2eff04f",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1507712818667978882",
+          "mode": "list",
+          "cachedResultName": "ASIX Factory",
+          "cachedResultUrl": "https://discord.com/channels/1507712818667978882"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1507712988834955294",
+          "mode": "list",
+          "cachedResultName": "start-project",
+          "cachedResultUrl": "https://discord.com/channels/1507712818667978882/1507712988834955294"
+        },
+        "content": "=🔴 ERROR al workflow {{ $json.workflow.name }}\n\n❌ Node: {{ $json.execution.lastNodeExecuted }}\n\n💬 Error: {{ $json.execution.error.message }}\n\n🕐 Hora: {{ new Date($json.execution.error.timestamp).toLocaleString('ca-ES') }}\n\n🔗 {{ $json.execution.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        32,
+        128
+      ],
+      "id": "9c1ceae1-09b6-4568-9b73-5f6bf2fe07fa",
+      "name": "Send a message",
+      "webhookId": "99e4c29f-7d91-4a14-b611-8962f17adfb8",
+      "credentials": {
+        "discordBotApi": {
+          "id": "VssNjGSdfJjapAx0",
+          "name": "Discord Bot account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "ionutantonioardelean@iesmontsia.org",
+        "subject": "=🔴 Error {{ $json.execution.workflow.name ?? $json.workflow.name }} - {{ $json.execution.lastNodeExecuted }}",
+        "emailType": "text",
+        "message": "=Ha fallat el workflow {{ $json.workflow.name }}.\n\nNode: {{ $json.execution.lastNodeExecuted }}\nError: {{ $json.execution.error.message }}\nHora: {{ new Date($json.execution.error.timestamp).toLocaleString('ca-ES') }}\n\nAccedeix a l'execució: {{ $json.execution.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        32,
+        -32
+      ],
+      "id": "7d563f50-5ab2-4a0e-8e15-c79bf617a233",
+      "name": "Send a message1",
+      "webhookId": "9fc2b4cd-088c-477e-9eae-45fa3a712701",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Ku4yCsHKPAuQrXDj",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "72a8f3d4-b493-4c43-8b3e-2f228668c3c8",
+  "meta": {
+    "instanceId": "1a37b07806af0ab140a4a40840f54f494808d2462d4853ea12fe394a6f43af63"
+  },
+  "id": "NminFtrauYo208aj",
+  "tags": []
+}

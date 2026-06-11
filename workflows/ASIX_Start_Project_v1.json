@@ -1,0 +1,739 @@
+{
+  "name": "ASIX Start Project v1",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $json['Nom carpeta del projecte'] }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1CUJcvfrONwU4CPSJxIJJBTq3wWzsW44A",
+          "mode": "list",
+          "cachedResultName": "Asix1",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1CUJcvfrONwU4CPSJxIJJBTq3wWzsW44A"
+        },
+        "options": {}
+      },
+      "id": "55462851-ed03-4eac-bb4d-32878581f3a3",
+      "name": "Crear carpeta projecte",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -2560,
+        1296
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "vbUdQnN7rXeEaGae",
+          "name": "Google Drive account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "copy",
+        "fileId": {
+          "__rl": true,
+          "value": "1IpFPtX8H-4krNh9qRhkFXZjQgZvXf3Yybtkt-tNiwz8",
+          "mode": "list",
+          "cachedResultName": "plantilla_objectius",
+          "cachedResultUrl": "https://docs.google.com/document/d/1IpFPtX8H-4krNh9qRhkFXZjQgZvXf3Yybtkt-tNiwz8/edit?usp=drivesdk"
+        },
+        "name": "={{ $json.name }}_objectius",
+        "sameFolder": false,
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Crear carpeta projecte').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "a7b1a852-4b70-44b9-b87a-9e13d343d51b",
+      "name": "Copiar plantilla Objectius",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -2384,
+        1008
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "vbUdQnN7rXeEaGae",
+          "name": "Google Drive account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "copy",
+        "fileId": {
+          "__rl": true,
+          "value": "1cSSrbjk_Qs3Zyd14SVyDOayTiq4hqoVmDPA1Gd0m2QA",
+          "mode": "list",
+          "cachedResultName": "plantilla_acords",
+          "cachedResultUrl": "https://docs.google.com/document/d/1cSSrbjk_Qs3Zyd14SVyDOayTiq4hqoVmDPA1Gd0m2QA/edit?usp=drivesdk"
+        },
+        "name": "={{ $('variables formulari').item.json['Nom carpeta del projecte'] }}_acords",
+        "sameFolder": false,
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Crear carpeta projecte').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "62612587-255a-4019-a920-b87620af81d8",
+      "name": "Copiar plantilla Acords",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -2384,
+        1152
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "vbUdQnN7rXeEaGae",
+          "name": "Google Drive account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "copy",
+        "fileId": {
+          "__rl": true,
+          "value": "1eezyOfhafH4_egsom59RLhaEu90U4E_yd4-El9Hap6Q",
+          "mode": "list",
+          "cachedResultName": "plantilla_pla_treball",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1eezyOfhafH4_egsom59RLhaEu90U4E_yd4-El9Hap6Q/edit?usp=drivesdk"
+        },
+        "name": "={{ $('variables formulari').item.json['Nom carpeta del projecte'] }}_pla_treball",
+        "sameFolder": false,
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Crear carpeta projecte').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "6b821035-cdc3-44ce-8ad2-08e62fa0349a",
+      "name": "Copiar plantilla Pla Treball",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -2384,
+        1296
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "vbUdQnN7rXeEaGae",
+          "name": "Google Drive account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ (() => {\n  const url = $('variables formulari').item.json['Enunciat del projecte (PDF)'] ?? '';\n  const m1 = url.match(/\\/file\\/d\\/([a-zA-Z0-9_-]+)/);\n  if (m1) return m1[1].trim();\n  const m2 = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);\n  if (m2) return m2[1].trim();\n  const m3 = url.match(/\\/d\\/([a-zA-Z0-9_-]+)/);\n  if (m3) return m3[1].trim();\n  return url.trim();\n})() }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "857e1755-1de2-48f3-b9b0-fffc7b50f5a6",
+      "name": "Descarregar PDF enunciat",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -2384,
+        1456
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "vbUdQnN7rXeEaGae",
+          "name": "Google Drive account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "id": "73cb1919-c5d4-4a26-b38a-7c3429c9811c",
+      "name": "Extreure text PDF",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -2256,
+        1456
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const rawText = $input.item.json.text;\n\nconst cleaned = rawText\n  .replace(/^```json\\n?/, '')\n  .replace(/^```\\n?/, '')\n  .replace(/```$/, '')\n  .trim();\n\nlet inString = false;\nlet escaped = false;\nlet result = '';\nfor (let i = 0; i < cleaned.length; i++) {\n  const ch = cleaned[i];\n  if (escaped) { result += ch; escaped = false; }\n  else if (ch === '\\\\') { result += ch; escaped = true; }\n  else if (ch === '\"') { result += ch; inString = !inString; }\n  else if (inString && ch === '\\n') { result += '\\\\n'; }\n  else if (inString && ch === '\\r') { result += '\\\\r'; }\n  else if (inString && ch === '\\t') { result += '\\\\t'; }\n  else { result += ch; }\n}\n\nconst normalized = result\n  .replace(/\\u2018/g, \"'\").replace(/\\u2019/g, \"'\")\n  .replace(/\\u201C/g, '\\\\\"').replace(/\\u201D/g, '\\\\\"');\n\nlet depth = 0, jsonEnd = -1, inStr = false, esc = false;\nconst firstChar = normalized.trimStart()[0];\nconst opener = firstChar === '[' ? '[' : '{';\nconst closer = firstChar === '[' ? ']' : '}';\nfor (let i = 0; i < normalized.length; i++) {\n  const c = normalized[i];\n  if (esc) { esc = false; continue; }\n  if (c === '\\\\') { esc = true; continue; }\n  if (c === '\"') { inStr = !inStr; continue; }\n  if (!inStr) {\n    if (c === opener) depth++;\n    else if (c === closer) { depth--; if (depth === 0) { jsonEnd = i; break; } }\n  }\n}\n\nif (jsonEnd === -1) throw new Error('No s\\'ha trobat JSON vàlid. Text: ' + cleaned.substring(0, 300));\n\nlet parsed;\ntry {\n  parsed = JSON.parse(normalized.substring(0, jsonEnd + 1));\n} catch(e) {\n  throw new Error('Error parsejant JSON: ' + e.message + '\\nText: ' + normalized.substring(0, 500));\n}\n\nif (parsed.error) throw new Error('Gemini ha reportat un error: ' + parsed.error);\n\nreturn [{ json: parsed }];"
+      },
+      "id": "f607eb81-ab0e-4ec1-84c8-3545558dfbde",
+      "name": "Parsejar JSON Gemini",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1488,
+        1296
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://docs.googleapis.com/v1/documents/{{ $('Copiar plantilla Objectius').item.json.id }}:batchUpdate",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDocsOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ {\"requests\": $json.requests_objectius.requests} }}",
+        "options": {
+          "lowercaseHeaders": false
+        }
+      },
+      "id": "379ba0fa-b4bc-4f22-83d5-259d35fa6a18",
+      "name": "Omplir doc Objectius",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1184,
+        1152
+      ],
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "XPuBHoi20NNj2u4W",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://docs.googleapis.com/v1/documents/{{ $('Copiar plantilla Acords').item.json.id }}:batchUpdate",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDocsOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ {\"requests\": $json.requests_acords.requests} }}",
+        "options": {}
+      },
+      "id": "b679392c-2792-4c2c-865e-6620bc6114ea",
+      "name": "Omplir doc Acords",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1184,
+        1296
+      ],
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "XPuBHoi20NNj2u4W",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://sheets.googleapis.com/v4/spreadsheets/{{ $('Copiar plantilla Pla Treball').item.json.id }}/values:batchUpdate",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ {\"valueInputOption\": \"USER_ENTERED\", \"data\": $json.sheets_pla_treball} }}",
+        "options": {}
+      },
+      "id": "bcd51194-219e-467c-89c8-0da335a60f1c",
+      "name": "Omplir doc Pla Treball",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1184,
+        1440
+      ],
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "XPuBHoi20NNj2u4W",
+          "name": "Google Docs account"
+        },
+        "googleSheetsOAuth2Api": {
+          "id": "1JD80lDp8rpEnS1O",
+          "name": "Google Sheets account 4"
+        },
+        "oAuth2Api": {
+          "id": "GEpaSStbb311DrKo",
+          "name": "Http request credencial"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1vURC2EDHEDbpqrNK_AyMB_Ee5DDbX20y7ZnVHcFRYSo",
+          "mode": "list",
+          "cachedResultName": "Respostes Start-Project",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vURC2EDHEDbpqrNK_AyMB_Ee5DDbX20y7ZnVHcFRYSo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1949536144,
+          "mode": "list",
+          "cachedResultName": "Respostes al formulari 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vURC2EDHEDbpqrNK_AyMB_Ee5DDbX20y7ZnVHcFRYSo/edit#gid=1949536144"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2880,
+        1296
+      ],
+      "id": "62c91a16-519f-49b0-8bdb-b20aa7798f80",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "SDOnQgpp0g2sYLUW",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nconst gsTrigger = $('variables formulari').first().json;\nconst grup     = gsTrigger['Número de grup']  ?? '';\nconst membres  = gsTrigger['Noms dels membres (separats per comes)']  ?? '';\nconst nomModul = gsTrigger['Nom i codi del mòdul'] ?? '';\n\n\nconst obj = data.objectius   ?? {};\nconst ac  = data.acords      ?? {};\nconst pt  = data.pla_treball ?? {};\n\nconst sd = (v) => {\n  if (v == null || v === undefined) return ' ';\n  const str = String(v).replace(/\\r/g, '').trim();\n  return str === '' ? ' ' : str;\n};\n\nconst s = (v) => {\n  if (v == null || v === undefined) return '';\n  return String(v).replace(/\\r/g, '').trim();\n};\n\nconst makeReplace = (tag, replaceText) => ({\n  replaceAllText: {\n    containsText: { text: '[' + tag + ']', matchCase: true },\n    replaceText: sd(replaceText)\n  }\n});\n\n// ----- EXTREURE ROLS I CONTACTES DEL FORMULARI -----\nconst rols     = gsTrigger['Assignació de rols del grup'] ?? '';\nconst contactes = gsTrigger['Adreces de contacte dels membres'] ?? '';\n\nconst extractRol = (rolName) => {\n  const regex = new RegExp(rolName + '[:\\\\s]+([^,\\\\n]+)', 'i');\n  const match = rols.match(regex);\n  return match ? match[1].trim() : \"Pendent d'assignar\";\n};\n\nconst acord_coordinador   = extractRol('Coordinador');\nconst acord_corrector     = extractRol('Corrector');\nconst acord_unificador    = extractRol('Unificador');\nconst acord_recordador    = extractRol('Recordador');\nconst acord_secretari     = extractRol('Secretari');\nconst acord_normalitzador = extractRol('Normalitzador');\nconst acord_multimedia    = extractRol('Multimèdia') !== \"Pendent d'assignar\"\n                            ? extractRol('Multimèdia')\n                            : extractRol('Multimedia');\n// ---------------------------------------------------\n\n// 1. Mapeig d'Objectius\nconst requestsObjectius = [\n  makeReplace('cicle',                 obj.cicle),\n  makeReplace('curs',                  obj.curs),\n  makeReplace('nom_modul',             nomModul || obj.nom_modul),\n  makeReplace('resultat_aprenentatge', obj.resultat_aprenentatge),\n  makeReplace('titol_activitat',       obj.titol_activitat),\n  makeReplace('grup',                  grup),\n  makeReplace('objectiu_1',            obj.objectiu_1),\n  makeReplace('objectiu_2',            obj.objectiu_2),\n  makeReplace('objectiu_3',            obj.objectiu_3),\n  makeReplace('objectiu_4',            obj.objectiu_4),\n  makeReplace('objectiu_5',            obj.objectiu_5),\n  makeReplace('objectiu_6',            obj.objectiu_6),\n];\n\n// 2. Mapeig d'Acords\nconst requestsAcords = [\n  makeReplace('cicle',                  ac.cicle),\n  makeReplace('curs',                   ac.curs),\n  makeReplace('nom_modul',              nomModul || ac.nom_modul),\n  makeReplace('resultat_aprenentatge',  ac.resultat_aprenentatge),\n  makeReplace('titol_activitat',        ac.titol_activitat),\n  makeReplace('grup',                   grup),\n  makeReplace('membres',                membres),\n  makeReplace('professor',              ac.professor),\n  makeReplace('acord_frequencia_wiki',  ac.acord_frequencia_wiki),\n  makeReplace('acord_frequencia_correu',ac.acord_frequencia_correu),\n  makeReplace('acord_antelacio_reunio', ac.acord_antelacio_reunio),\n  makeReplace('acord_contactes',        contactes),\n  makeReplace('acord_marge_resposta',   ac.acord_marge_resposta),\n  makeReplace('acord_coordinador',      acord_coordinador),\n  makeReplace('acord_corrector',        acord_corrector),\n  makeReplace('acord_unificador',       acord_unificador),\n  makeReplace('acord_recordador',       acord_recordador),\n  makeReplace('acord_secretari',        acord_secretari),\n  makeReplace('acord_normalitzador',    acord_normalitzador),\n  makeReplace('acord_multimedia',       acord_multimedia),\n  makeReplace('acord_colors',           ac.acord_colors),\n  makeReplace('acord_altres',           ac.acord_altres),\n];\n\n// 3. Mapeig de Pla de Treball → Sheets API\nconst sheetName = \"Full 1\";\n\nconst horesPerAlumne = parseFloat(gsTrigger['Hores totals de classe per al projecte'] ?? 0);\nconst noms = (membres || '').split(',').filter(x => x.trim()).length || 1;\nconst horesTotal = horesPerAlumne * noms;\n\nconst pesos = { 'Alta': 3, 'Mitjana': 2, 'Baixa': 1 };\nlet pesoTotal = 0;\nconst taskList = [];\nfor (let i = 1; i <= 8; i++) {\n  const nom = s(pt[\"tasca_\" + i + \"_nom\"]);\n  if (!nom) continue;\n  const prioritat = s(pt[\"tasca_\" + i + \"_prioritat\"]);\n  const pes = pesos[prioritat] ?? 2;\n  pesoTotal += pes;\n  taskList.push({ i, pes });\n}\nconst durades = {};\nlet horesAssignades = 0;\ntaskList.forEach((t, idx) => {\n  if (idx === taskList.length - 1) {\n    durades[t.i] = Math.max(0.5, Math.round((horesTotal - horesAssignades) * 2) / 2);\n  } else {\n    const raw = (t.pes / pesoTotal) * horesTotal;\n    const arrodonit = Math.max(0.5, Math.round(raw * 2) / 2);\n    durades[t.i] = arrodonit;\n    horesAssignades += arrodonit;\n  }\n});\n\nconst sheetsPlaTraball = [\n  { range: sheetName + \"!C3\",  values: [[s(pt.cicle)]] },\n  { range: sheetName + \"!G3\",  values: [[s(pt.curs)]] },\n  { range: sheetName + \"!C4\",  values: [[s(nomModul || pt.nom_modul)]] },\n  { range: sheetName + \"!G4\", values: [[s(pt.codi_modul) ||(nomModul.match(/^\\d+/)   || [''])[0]]] },\n  { range: sheetName + \"!C5\",  values: [[s(pt.resultat_aprenentatge)]] },\n  { range: sheetName + \"!G5\",  values: [[s(pt.professor)]] },\n  { range: sheetName + \"!C6\",  values: [[s(grup)]] },\n  { range: sheetName + \"!G6\",  values: [[s(membres)]] },\n  { range: sheetName + \"!H17\", values: [[String(horesTotal)]] },\n  { range: sheetName + \"!H18\", values: [[String(horesPerAlumne)]] },\n];\n\nconst taskRows = [9, 10, 11, 12, 13, 14, 15, 16];\nfor (let i = 1; i <= 8; i++) {\n  const row = taskRows[i - 1];\n  const duradaVal = s(pt[\"tasca_\" + i + \"_nom\"]) ? (durades[i] + \"h\") : '';\n  sheetsPlaTraball.push({ range: sheetName + \"!C\" + row, values: [[s(pt[\"tasca_\" + i + \"_nom\"])]] });\n  sheetsPlaTraball.push({ range: sheetName + \"!D\" + row, values: [[s(pt[\"tasca_\" + i + \"_scrum\"])]] });\n  sheetsPlaTraball.push({ range: sheetName + \"!E\" + row, values: [[s(pt[\"tasca_\" + i + \"_descripcio\"])]] });\n  sheetsPlaTraball.push({ range: sheetName + \"!F\" + row, values: [[s(pt[\"tasca_\" + i + \"_resultat\"])]] });\n  sheetsPlaTraball.push({ range: sheetName + \"!G\" + row, values: [[s(pt[\"tasca_\" + i + \"_comprovacio\"])]] });\n  sheetsPlaTraball.push({ range: sheetName + \"!H\" + row, values: [[duradaVal]] });\n  sheetsPlaTraball.push({ range: sheetName + \"!I\" + row, values: [[s(pt[\"tasca_\" + i + \"_prioritat\"])]] });\n}\n\nreturn [{\n  json: {\n    ...data,\n    grup,\n    membres,\n    nomModul,\n    requests_objectius:  { requests: requestsObjectius },\n    requests_acords:     { requests: requestsAcords },\n    sheets_pla_treball:  sheetsPlaTraball,\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1344,
+        1296
+      ],
+      "id": "e1463c31-fc19-4d25-b639-b155b7a29192",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.item.json;\n\nconst grup      = item['Número de grup'] ?? '';\nconst membres   = item['Noms dels membres (separats per comes)'] ?? '';\nconst rols      = (item['Assignació de rols del grup'] ?? '').replace(/\\n/g, ' ').replace(/\\s+/g, ' ').trim();\nconst contactes = item['Adreces de contacte dels membres'] ?? '';\nconst modul     = item['Nom i codi del mòdul'] ?? '';\nconst hores     = String(item['Hores totals de classe per al projecte'] ?? '');\nconst extra     = item['Informació adicional i peticions per a la IA'] ?? '';\n\nconst pdfText = (item['text'] ?? '').trim();\n\nconst pdfStatus = pdfText.length > 200\n  ? `TEXT COMPLET DEL PDF DE L'ENUNCIAT:\\n=== INICI PDF ===\\n${pdfText}\\n=== FI PDF ===`\n  : `ERROR CRÍTIC: PDF buit (${pdfText.length} cars). Retorna exactament: {\"error\":\"PDF no llegible\"}`;\n\nconst prompt = `NOVA TASCA INDEPENDENT — IGNORA QUALSEVOL CONTEXT ANTERIOR.\nDADES DEL FORMULARI (copia aquests valors EXACTAMENT):\n- Grup: ${grup}\n- Membres: ${membres}\n- Rols del grup: ${rols}\n- Contactes: ${contactes}\n- Mòdul (nom_modul = EXACTAMENT aquest text): ${modul}\n- Hores totals (hores_totals = EXACTAMENT aquest número): ${hores}\n- Informació addicional (acord_altres = EXACTAMENT aquest text, o buit si no hi ha res): ${extra || ''}\n${pdfStatus}\nRECORDATORI FINAL OBLIGATORI — CAMPS QUE HAN DE TENIR VALOR:\n- grup = \"${grup}\" (NO deixis buit)\n- membres = \"${membres}\" (NO deixis buit)\n- nom_modul = \"${modul}\" (NO deixis buit)\n- hores_per_alumne = \"${hores}\" (NO deixis buit)\n- hores_totals = calcula: ${hores} multiplicat pel nombre de membres\n- acord_contactes = \"${contactes}\" (copia LITERAL, NO deixis buit)\n- acord_frequencia_wiki, acord_frequencia_correu, acord_antelacio_reunio, acord_marge_resposta, acord_colors = inventa valors raonables en català (NO deixis buit)\n- acord_altres = \"${extra || ''}\"\n- totes les tasca_X_durada han de sumar exactament les hores_totals (NO posar 0h)`;\n\nreturn { prompt, pdfLength: pdfText.length, grup, modul, hores };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1936,
+        1296
+      ],
+      "id": "0b789165-73ad-464e-b625-40238ea947a9",
+      "name": "Construir Prompt Gemini"
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.item.json;\n\n// Funció per llegir un camp que pot venir com a nom real o com a Columna X\nconst get = (realName, colName) => item[realName] ?? item[colName] ?? '';\n\n// Ignorar files buides\nconst pdf = get('Enunciat del projecte (PDF)', 'Columna 2');\nconst membres = get('Noms dels membres (separats per comes)', 'Columna 4');\nif (!pdf && !membres) return [];\n\nreturn [{\n  json: {\n    'Enunciat del projecte (PDF)':                  pdf,\n    'Hores totals de classe per al projecte':       get('Hores totals de classe per al projecte', 'Columna 3'),\n    'Noms dels membres (separats per comes)':       membres,\n    'Número de grup':                               get('Número de grup', 'Columna 5'),\n    'Informació adicional i peticions per a la IA': get('Informació adicional i peticions per a la IA', 'Columna 6'),\n    'Nom carpeta del projecte':                     get('Nom carpeta del projecte', 'Columna 8'),\n    'Assignació de rols del grup':                  get('Assignació de rols del grup', 'Columna 9'),\n    'Adreces de contacte dels membres':             get('Adreces de contacte dels membres', 'Columna 10'),\n    'Nom i codi del mòdul':                         get('Nom i codi del mòdul', 'Columna 11'),\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2720,
+        1296
+      ],
+      "id": "f35b9fa9-afdb-40f6-aff3-00a777163e2d",
+      "name": "variables formulari"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://sheets.googleapis.com/v4/spreadsheets/{{ $('Copiar plantilla Pla Treball').item.json.id }}:batchUpdate",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"requests\": [\n    {\n      \"updateCells\": {\n        \"rows\": [{ \"values\": [{ \"userEnteredValue\": { \"stringValue\": \"{{ $('variables formulari').item.json['Número de grup'] }}\" } }] }],\n        \"fields\": \"userEnteredValue\",\n        \"start\": { \"sheetId\": 0, \"rowIndex\": 5, \"columnIndex\": 2 }\n      }\n    },\n    {\n      \"updateCells\": {\n        \"rows\": [{ \"values\": [{ \"userEnteredValue\": { \"stringValue\": \"{{ $('variables formulari').item.json['Noms dels membres (separats per comes)'] }}\" } }] }],\n        \"fields\": \"userEnteredValue\",\n        \"start\": { \"sheetId\": 0, \"rowIndex\": 5, \"columnIndex\": 7 }\n      }\n    },\n    {\n      \"updateCells\": {\n        \"rows\": [{ \"values\": [{ \"userEnteredFormat\": { \"backgroundColor\": { \"red\": 0.741, \"green\": 0.843, \"blue\": 0.933 } } }] }],\n        \"fields\": \"userEnteredFormat.backgroundColor\",\n        \"start\": { \"sheetId\": 0, \"rowIndex\": 3, \"columnIndex\": 6 }\n      }\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "a7f0ead6-f66a-46ca-945d-dbe6dde7b722",
+      "name": "Omplir doc Pla Treball1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -992,
+        1440
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "1JD80lDp8rpEnS1O",
+          "name": "Google Sheets account 4"
+        },
+        "oAuth2Api": {
+          "id": "QDxzhHe937PWVBF9",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "copy",
+        "fileId": {
+          "__rl": true,
+          "value": "10BiPXRXGxi5chfAfRPyNS-Pbu_nFA6tInSb1-r2xkWA",
+          "mode": "list",
+          "cachedResultName": "Plantilla_Asix",
+          "cachedResultUrl": "https://docs.google.com/document/d/10BiPXRXGxi5chfAfRPyNS-Pbu_nFA6tInSb1-r2xkWA/edit?usp=drivesdk"
+        },
+        "name": "={{ $('variables formulari').item.json['Nom carpeta del projecte'] }}_MemoriaTecnica",
+        "sameFolder": false,
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Crear carpeta projecte').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "0c798307-5c29-437a-9523-6c6a8fe3fabd",
+      "name": "Copiar plantilla Documentació",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -2384,
+        1600
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "vbUdQnN7rXeEaGae",
+          "name": "Google Drive account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "numberInputs": 5,
+        "options": {}
+      },
+      "id": "11d24c1c-c97d-46b4-89cd-fa8cace32dc2",
+      "name": "Esperar tot llest",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        -2112,
+        1248
+      ]
+    },
+    {
+      "parameters": {
+        "model": "meta-llama/llama-4-scout",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1792,
+        1456
+      ],
+      "id": "d97f9e6a-c295-4d31-a980-49a167e13f41",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "EA3bOuLl2yrSEmjj",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.prompt }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Ets un expert en gestió de projectes tècnics de l'Institut Montsià (ASIX). La teva tasca és analitzar l'enunciat d'un projecte i les dades del grup per generar el contingut dels tres documents de planificació: Objectius, Acords i Pla de Treball. RETORNA ÚNICAMENT un objecte JSON vàlid, sense cap text addicional, sense markdown, sense ```json.  L'estructura exacta ha de ser: {   \"objectius\": {     \"cicle\": \"extret del formulari o de l'enunciat\",     \"curs\": \"extret del formulari o de l'enunciat\",     \"nom_modul\": \"valor del camp Mòdul del formulari\",     \"resultat_aprenentatge\": \"extret de l'enunciat\",     \"titol_activitat\": \"títol de l'enunciat\",     \"grup\": \"valor del camp Grup\",     \"objectiu_1\": \"...\",     \"objectiu_2\": \"...\",     \"objectiu_3\": \"...\",     \"objectiu_4\": \"...\",     \"objectiu_5\": \"...\",     \"objectiu_6\": \"...\"   },   \"acords\": {     \"cicle\": \"extret del formulari o de l'enunciat\",     \"curs\": \"extret del formulari o de l'enunciat\",     \"nom_modul\": \"valor del camp Mòdul del formulari\",     \"resultat_aprenentatge\": \"extret de l'enunciat\",     \"titol_activitat\": \"títol de l'enunciat\",     \"grup\": \"valor del camp Grup\",     \"membres\": \"valor del camp Membres\",     \"professor\": \"extret de l'enunciat o del formulari. Si no apareix, posa 'Per determinar'\",     \"acord_frequencia_wiki\": \"...\",     \"acord_frequencia_correu\": \"...\",     \"acord_antelacio_reunio\": \"...\",     \"acord_contactes\": \"COPIA LITERAL del camp Contactes\",     \"acord_marge_resposta\": \"...\",     \"acord_coordinador\": \"\",     \"acord_corrector\": \"\",     \"acord_unificador\": \"\",     \"acord_recordador\": \"\",     \"acord_secretari\": \"\",     \"acord_normalitzador\": \"\",     \"acord_multimedia\": \"\",     \"acord_colors\": \"...\",     \"acord_altres\": \"...\"   },   \"pla_treball\": {     \"cicle\": \"extret del formulari o de l'enunciat\",     \"curs\": \"extret del formulari o de l'enunciat\",     \"nom_modul\": \"valor del camp Mòdul del formulari\",     \"codi_modul\": \"codi numèric extret del camp Mòdul si existeix, sinó deixar buit\",     \"resultat_aprenentatge\": \"extret de l'enunciat\",     \"professor\": \"extret de l'enunciat o del formulari. Si no apareix, posa 'Per determinar'\",     \"grup\": \"valor del camp Grup\",     \"membres\": \"valor del camp Membres\",     \"hores_totals\": \"hores del formulari multiplicat pel nombre de membres (exemple: 18h x 4 membres = 72h)\",     \"hores_per_alumne\": \"valor del camp Hores totals del formulari sense multiplicar (exemple: 18h)\",     \"tasca_1_nom\": \"...\", \"tasca_1_scrum\": \"NOM-CURT\", \"tasca_1_descripcio\": \"...\", \"tasca_1_resultat\": \"...\", \"tasca_1_comprovacio\": \"...\", \"tasca_1_durada\": \"Xh\", \"tasca_1_prioritat\": \"Alta/Mitjana/Baixa\",     \"tasca_2_nom\": \"...\", \"tasca_2_scrum\": \"NOM-CURT\", \"tasca_2_descripcio\": \"...\", \"tasca_2_resultat\": \"...\", \"tasca_2_comprovacio\": \"...\", \"tasca_2_durada\": \"Xh\", \"tasca_2_prioritat\": \"Alta/Mitjana/Baixa\",     \"tasca_3_nom\": \"...\", \"tasca_3_scrum\": \"NOM-CURT\", \"tasca_3_descripcio\": \"...\", \"tasca_3_resultat\": \"...\", \"tasca_3_comprovacio\": \"...\", \"tasca_3_durada\": \"Xh\", \"tasca_3_prioritat\": \"Alta/Mitjana/Baixa\",     \"tasca_4_nom\": \"...\", \"tasca_4_scrum\": \"NOM-CURT\", \"tasca_4_descripcio\": \"...\", \"tasca_4_resultat\": \"...\", \"tasca_4_comprovacio\": \"...\", \"tasca_4_durada\": \"Xh\", \"tasca_4_prioritat\": \"Alta/Mitjana/Baixa\",     \"tasca_5_nom\": \"...\", \"tasca_5_scrum\": \"NOM-CURT\", \"tasca_5_descripcio\": \"...\", \"tasca_5_resultat\": \"...\", \"tasca_5_comprovacio\": \"...\", \"tasca_5_durada\": \"Xh\", \"tasca_5_prioritat\": \"Alta/Mitjana/Baixa\",     \"tasca_6_nom\": \"...\", \"tasca_6_scrum\": \"NOM-CURT\", \"tasca_6_descripcio\": \"...\", \"tasca_6_resultat\": \"...\", \"tasca_6_comprovacio\": \"...\", \"tasca_6_durada\": \"Xh\", \"tasca_6_prioritat\": \"Alta/Mitjana/Baixa\",     \"tasca_7_nom\": \"...\", \"tasca_7_scrum\": \"NOM-CURT\", \"tasca_7_descripcio\": \"...\", \"tasca_7_resultat\": \"...\", \"tasca_7_comprovacio\": \"...\", \"tasca_7_durada\": \"Xh\", \"tasca_7_prioritat\": \"Alta/Mitjana/Baixa\",     \"tasca_8_nom\": \"...\", \"tasca_8_scrum\": \"NOM-CURT\", \"tasca_8_descripcio\": \"...\", \"tasca_8_resultat\": \"...\", \"tasca_8_comprovacio\": \"...\", \"tasca_8_durada\": \"Xh\", \"tasca_8_prioritat\": \"Alta/Mitjana/Baixa\"   } }  REGLES IMPORTANTS: - Tots els textos han de ser en CATALÀ formal. - Infereix els objectius i tasques DIRECTAMENT de l'enunciat. - El camp professor s'ha d'extreure de l'enunciat o del formulari. Si no apareix explícitament, posa \"Per determinar\". - El camp cicle s'ha d'extreure del formulari o de l'enunciat (pot ser ASIX, ASIX2, DAW, DAM, SMX o altres). - El camp curs s'ha d'extreure del formulari o de l'enunciat. - El camp nom_modul ha de ser el valor exacte del camp Mòdul del formulari, sense modificar. - El camp codi_modul és el codi numèric que apareix davant del nom del mòdul (exemple: \"369 - Implantació...\" → \"369\"). Si no hi ha codi, deixar buit. - Genera SEMPRE exactament 8 tasques reals. Desglossa i divideix les tasques fins arribar a exactament 8. Mai deixis cap tasca buida ni amb valor \"\". - Per a cada tasca, inventa un nom curt descriptiu per al camp scrum (màxim 2 paraules en majúscules, estil \"ANÀLISI-SO\", \"INSTAL·LACIÓ\", \"DOCUMENTACIÓ\"). NO utilitzis SCRUM-1, SCRUM-2 ni cap numeració. - Les hores de cada tasca han de sumar exactament les hores totals del projecte (hores del formulari × nombre de membres). Exemple: 18h × 4 membres = 72h en total entre totes les tasques. - Els camps acord_coordinador, acord_corrector, acord_unificador, acord_recordador, acord_secretari, acord_normalitzador i acord_multimedia han de ser SEMPRE \"\" (cadena buida). Els omplirà el sistema automàticament. - Per a acord_contactes: copia LITERALMENT el valor del camp Contactes, sense modificar res. - NO inventes cap informació que no surti de l'enunciat o del formulari. - INCLOU SEMPRE les 8 claus tasca_1 fins tasca_8 al JSON amb contingut real, mai buides. - El camp \"curs\" ha de ser SEMPRE l'any acadèmic en format \"XXXX-XXXX\" (exemple: \"2025-2026\"), mai el nom del cicle. - El camp \"cicle\" ha de ser el nom del cicle formatiu (exemple: \"ASIX\", \"DAW\", \"SMX\"...), mai l'any. \n\n\"acord_frequencia_wiki\": \"Mínim un cop per setmana\",\n\"acord_frequencia_correu\": \"Màxim 24 hores en dies lectius\",\n\"acord_antelacio_reunio\": \"Mínim 24 hores d'antelació\",\n\"acord_marge_resposta\": \"Màxim 24 hores en dies lectius\",\n\"acord_colors\": \"Cada membre utilitzarà un color diferent per identificar les seves aportacions al document compartit\","
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        -1792,
+        1296
+      ],
+      "id": "f685a9dc-13d5-411d-8439-d572605011d8",
+      "name": "Basic LLM Chain"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Crear carpeta projecte": {
+      "main": [
+        [
+          {
+            "node": "Descarregar PDF enunciat",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Copiar plantilla Documentació",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Copiar plantilla Objectius",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Copiar plantilla Acords",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Copiar plantilla Pla Treball",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copiar plantilla Objectius": {
+      "main": [
+        [
+          {
+            "node": "Esperar tot llest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copiar plantilla Acords": {
+      "main": [
+        [
+          {
+            "node": "Esperar tot llest",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Descarregar PDF enunciat": {
+      "main": [
+        [
+          {
+            "node": "Extreure text PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parsejar JSON Gemini": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Omplir doc Objectius": {
+      "main": [
+        []
+      ]
+    },
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "variables formulari",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copiar plantilla Pla Treball": {
+      "main": [
+        [
+          {
+            "node": "Esperar tot llest",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Extreure text PDF": {
+      "main": [
+        [
+          {
+            "node": "Esperar tot llest",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Omplir doc Acords": {
+      "main": [
+        []
+      ]
+    },
+    "Omplir doc Pla Treball": {
+      "main": [
+        [
+          {
+            "node": "Omplir doc Pla Treball1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Omplir doc Pla Treball",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Omplir doc Acords",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Omplir doc Objectius",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Construir Prompt Gemini": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "variables formulari": {
+      "main": [
+        [
+          {
+            "node": "Crear carpeta projecte",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copiar plantilla Documentació": {
+      "main": [
+        [
+          {
+            "node": "Esperar tot llest",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Esperar tot llest": {
+      "main": [
+        [
+          {
+            "node": "Construir Prompt Gemini",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Parsejar JSON Gemini",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "NminFtrauYo208aj",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "758ba908-29d6-4369-9824-d69a3bd4478f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1a37b07806af0ab140a4a40840f54f494808d2462d4853ea12fe394a6f43af63"
+  },
+  "id": "2fQdxaaF8ETMMIO1",
+  "tags": []
+}
