@@ -5,9 +5,9 @@
 
 ---
 
-## 📌 Què és ASIX Factory?
+## 📌 Què és n8n-Start-Project?
 
-ASIX Factory és un sistema d'automatització basat en **n8n** que, a partir d'un formulari i el PDF d'un enunciat d'un projecte en equip, genera automàticament:
+n8n-Start-Project és un sistema d'automatització basat en **n8n** que, a partir d'un formulari i el PDF d'un enunciat d'un projecte en equip, genera automàticament:
 
 - 📁 **Carpeta de projecte** (Google Drive)
 - 📄 **Plantilla de documentació generica** (Google Docs)
