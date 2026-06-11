@@ -41,7 +41,6 @@ El projecte està pensat principalment per a cicles formatius d'ASIX i DAW/DAM. 
 │   ├── plantilla_acords.docx   ← plantilla acords
 │   ├── plantilla_objectius.docx   ← plantilla objetius
 │   └── plantilla_pla_treball.xlsx   ← plantilla pla de treball
-
 └── docs/
 │   ├── DriveSetup.md   ← documentació drive
 │   └── Formulari.md   ← documentació Formulari
