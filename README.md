@@ -1,4 +1,4 @@
-# 🏭 ASIX COMUNITY — Automatització de projectes amb IA
+# Automatització de projectes amb IA
 
 > ⚠️ **FASE BETA — Projecte públic per a data testing**
 > Aquest projecte està en desenvolupament actiu. Els resultats generats per la IA **no són definitius ni precisos al 100%**. Llegeix la secció [Advertències](#️-advertències-importants) abans de continuar.
